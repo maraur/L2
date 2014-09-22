@@ -1,23 +1,34 @@
+/**
+ *Ett program för att addera summan av alla siffror i en rad av en matris samt för att undersöka
+ *om summan av alla rader är lika och returnerar sedan en boolean som säger om summorna var lika eller inte.
+ *@author Marcus Auren, Fredrik Bengtsson
+ *@group 2
+ *@assignment Labbnummer 2 
+ *@date 210914
+ */
 public class Rse {
 
-	public static boolean allRowSumsEqual(int[][] m){
-		int sum = 0; 
-		if (m == null)
+	public static boolean allRowSumsEqual(int[][] m){ // tar emot en matris och undersöker om alla raders summor är lika
+		
+		if ( m == null || m.length == 0){ // kollar så att matrisen inte är null eller tom
 			return true;
-		for (int row=0; row< m.length; row++){
-			if(!(sum == rowSum(m[row])) && !(row == 0)){
+		}
+		
+		int firstRowSum = rowSum(m[0]); // Sparar den första raden för att låta alla andra rader jämföras med denna
+		
+		for ( int row = 1; row < m.length; row++ ){
+			if( !( firstRowSum == rowSum(m[row]) ) ){
 				return false;
 			}
-			sum = rowSum(m[row]);
 		}
-		return true;
+		return true; // Om for-loopen lyckas avslutas utan att ha returnera false så är alla rader lika och true returneras
 	}
 	public static int rowSum(int[] v){
 		int sum=0;
-		if ((v == null) || (v.length == 0)){
+		if ( ( v == null ) || ( v.length == 0 ) ){ // om raden är tom eller null så är summan lika med 0
 			return 0;
 		}
-		for (int i=0; i < v.length; i++) {
+		for ( int i = 0; i < v.length; i++ ) { 
 			sum += v[i];
 		}
 		return sum;
