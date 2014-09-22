@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class TestRse {
+	public static void main(String[] args) {
+
+		int[][] m1 = { {1, 2, -1, 2, 1, 2},
+						{4, 0, 0, 1, 2, -1, 1},
+						{1, 1, 1, 1, -1, 4} };
+
+		int[][] m2 = { {1, 2, 3, 4},
+						{5, 6, 7, 8},
+						{1, 1, 1, 1} };
+
+		int[][] m3 = { {0, 0, 0, 0}, 
+						null, 
+						{} };
+
+		int[][] m4 = null;
+
+		int[][] m5 = { {1, 4, 7, },
+						{} };
+		
+		int[][] m6 = {};
+		
+		int[][] m7 = { {},
+						null,
+						{1,3,4} };
+		int[][] m8 = { { 1 },
+						{ 1, 2, 3, 4, 1 },
+						{ 10, 20, 30, 40, 1 } };
+		
+		int[][][] matrixes = new int[][][]{ m1, m2, m3, m4, m5, m6, m7 ,m8};
+		boolean[] shouldBe = {true, false, true, true, false, true, false, false};
+		boolean fail = false;
+		ArrayList<Integer> fails = new ArrayList<Integer>();
+		
+		for( int i = 0; i < matrixes.length; i++ ){
+			if (shouldBe[i] == Rse.allRowSumsEqual(matrixes[i])){
+				System.out.println("Test " + (i + 1) + ". klarat!");
+				
+			}else{
+				System.out.println("Test " + (i + 1) + ". fel! Borde ha varit: " + shouldBe[i]);
+				fail = true;
+				fails.add(i);
+				
+			}	
+		}
+		System.out.println("------------------------------");
+		if (!fail){
+			System.out.println("Alla test klarades!");
+
+		}else{
+			for (int i = 0; i < fails.size(); i++){
+				System.out.println("Test " + ( fails.get(i) + 1 ) + " misslyckades.");
+			}
+		}
+	}
+}
